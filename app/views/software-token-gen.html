@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+    <title> National Bank of Bahrain </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Basic Styles -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/font-awesome.min.css">
+    <!-- VeriChannel Styles : Caution! DO NOT change the order -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/verichannel-production-plugins.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/verichannel-production.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/verichannel-skins.min.css">
+    <!-- VeriChannel RTL Support  -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/verichannel-rtl.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/vc.css">
+    <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <!-- GOOGLE FONT -->
+    <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700"> -->
+    <!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href="images/splash/sptouch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/splash/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/splash/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/splash/touch-icon-ipad-retina.png">
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href="images/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href="images/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href="images/splash/iphone.png" media="screen and (max-device-width: 320px)">
+    <style>
+        #extr-page #header {
+            position: fixed;
+            width: 100%;
+        }
+        #extr-page #main {
+            padding-top: 60px;
+        }
+        button.btn.btn-primary.unsub_btn {
+            float: left;
+            color: #fff !important;
+
+            background: #a90329 !important; /* Old browsers */
+            background: -moz-linear-gradient(top,  #fb6969 0%, #a90329 100%) !important; /* FF3.6-15 */
+            background: -webkit-linear-gradient(top,  #fb6969 0%,#a90329 100%) !important; /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom,  #fb6969 0%,#a90329 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fb6969', endColorstr='#a90329',GradientType=0 ) !important; /* IE6-9 */
+
+            border-color: #a90329;
+
+            border-radius: 50px;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        .reregister_div {
+            float: left;
+        }
+        .reregister_div i.hint {
+            font-size: 12px;
+            margin-left: 8px;
+            top: 19px;
+            position: relative;
+        }
+        .reregister_div i.hint {
+            font-size: 12px;
+            margin-left: 8px;
+            top: 14px;
+            position: relative;
+            float: left;
+            text-align: left;
+            line-height: normal;
+        }
+        @media screen and (max-width: 380px) {
+            .smart-form footer .btn {
+                padding: 0 8px;
+            }
+        }
+        @media screen and (max-width: 320px){
+            .smart-form footer .btn {
+                padding: 0 8px;
+                font-size: 12px;
+            }
+        }.spinner {
+             width: 100%;
+             height: 100%;
+             position: fixed;
+             display: block;
+             top: 0;
+             left: 0;
+             background: rgba(0,0,0,.5);
+             z-index: 10000;
+         }
+        .spinner img {
+            top: 40%;
+            position: absolute;
+            left: 35%;
+        }
+
+
+
+    </style>
+</head>
+
+<body id="login">
+    <header id="header">
+        <div id="logo-group">
+            <span id="logo"><img src="images/logo.png" alt="National Bank of Bahrain"> </span>
+        </div>
+    </header>
+    <div id="main" role="main">
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+            <div class="row" ng-init="init()">
+                <div class="col-xs-11 col-sm-11 col-md-5 col-lg-5 col-centered">
+                    <div class="well no-padding" ng-if="softtoken.show">
+                        <form action="" id="smart-form-register" class="smart-form client-form wizard">
+                            <header class="text-center">
+                                <!--<h3>softtoken.deviceuuid</h3>-->
+                                <h1>Generate Software Token</h1>
+                            </header>
+                            <fieldset>
+                                <section>
+                                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-centered text-center">
+
+                                        <br><br>
+                                        <label class="control-label"><h1><b>{{softtoken.generatedsofttoken}}</b></h1></label>
+                                    </div>
+                                </section>
+                            </fieldset>
+                            <footer class="text-center">
+                                <spinner class="spinner" name="stgenSpinner" show="softtoken.showspinner" img-src="images/loading.gif"></spinner>
+                                <button type="button" class="btn btn-primary" ng-click="softtoken.regenerateSoftToken()">
+                                    <i class="fa fa-fw fa-refresh"></i>Generate Code
+                                </button>
+                                <div class="reregister_div">
+                                    <button type="button" class="btn btn-primary unsub_btn" ng-click="softtoken.deleteDevice()">
+                                        <i class="fa fa-user-times"></i>
+                                    </button>
+                                    <i class="hint">click to <br>unsubscribe</i>
+                                </div>
+                            </footer>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
