@@ -37,3 +37,9 @@ platforms/*
 # Git
 !.gitignore
 !.gitkeep
+
+#TFS
+$tf/*
+
+# Others
+%ANDROID_HOME%/*
